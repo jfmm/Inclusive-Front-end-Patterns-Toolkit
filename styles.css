@@ -106,5 +106,59 @@ The .visually-hidden class invokes a special set of properties, carefully devise
 }
 
 
+/***
+
+ESTABLISHING A FLOW SYSTEM
+When people enter content into a WYSIWYG Editor, often a lot of unintended markup and inconsistent styling is rendered (i.e. empty <p> tags). The following styles help establish a consistent editing flow system so that all elements are spaced consistently without having editors delve into the HTML.
+
+Vertical Rythm Pattern:
+
+it’s good practice to at least use your paragraph line height as a basis for vertical spacing.
+
+TODO: When porting to Sass, use dynamic formula to increase margin top by 2
+***/
+
+main * + * {
+	margin-top: 2rem;
+}
+
+
+li, dt, dd, br, th, td {
+	margin-top: 0;
+}
+
+
+* + h2,
+* + h3,
+* + h4,
+* + h5,
+* + h6 {
+	margin-top: 1.5em;
+}
+
+
+/*
+To separate supplementary content such as blockquotes, videos,
+and illustrations from the paragraph text, you can apply a
+greater margin for anything that isn’t a <p>:
+*/
+
+main * + *:not(p) {
+	margin: 3rem 0; /* these values can be adjusted, of course */
+}
+
+
+
+/* 
+Defensive coding pattern: when the WYSIWYG editor enters unwanted <p> or empty tags we can remove the styling from this unwanted, empty markup:
+*/
+
+main :empty {
+	display: none;
+}
+
+
+
+
 
 
